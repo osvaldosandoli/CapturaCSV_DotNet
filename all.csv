@@ -1,0 +1,3 @@
+cep;cidade;email;estado;Logradouro;Nacionalidade;Nome;Sobrenome;Telefone;CPF;Nome_bnf;CPF_bnf
+03080040;sao Paulo;teste1@gmail.com;SP;rua;br;teste1;um;11999999991;00000000191;os2222;00000000604
+03080040;sao Paulo;teste2@gmail.com;SP;rua;br;teste2;dois;11999999992;00000000272;;;
