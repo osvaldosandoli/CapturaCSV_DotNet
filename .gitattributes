@@ -1,11 +1,21 @@
-# Ignorar arquivos de JavaScript na contagem
-wwwroot/js/* linguist-vendored
-Scripts/* linguist-vendored
-node_modules/* linguist-vendored
-
-# Se usar Bootstrap ou jQuery via pacote
-wwwroot/lib/* linguist-vendored
-
-# Forçar o projeto como C#
+# Forçar C# como linguagem principal
 *.cs linguist-language=C#
 *.cshtml linguist-language=HTML
+*.config linguist-language=XML
+
+# Ignorar pastas vendored comuns (não contar na linguagem)
+wwwroot/js/* linguist-vendored
+wwwroot/lib/* linguist-vendored
+Scripts/* linguist-vendored
+Content/* linguist-vendored
+node_modules/* linguist-vendored
+lib/* linguist-vendored
+
+# Ignorar minificados e pacotes
+*.min.js linguist-vendored
+*.bundle.js linguist-vendored
+*.map linguist-vendored
+
+# Ignorar arquivos de build do .NET
+bin/* linguist-generated
+obj/* linguist-generated
