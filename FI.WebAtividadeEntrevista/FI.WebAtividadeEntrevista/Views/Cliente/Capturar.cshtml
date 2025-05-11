@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Capturar Arquivo CSV";
+}
+
+<style>
+    .drop-zone {
+        border: 2px dashed #6c757d;
+        border-radius: 8px;
+        padding: 60px 20px;
+        text-align: center;
+        cursor: pointer;
+        background-color: #f8f9fa;
+        transition: background-color 0.3s;
+        position: relative;
+    }
+
+        .drop-zone:hover {
+            background-color: #e2e6ea;
+        }
+
+        .drop-zone input[type="file"] {
+            display: none;
+        }
+
+    .upload-icon {
+        font-size: 32px;
+        color: #6c757d;
+    }
+
+    .upload-text {
+        margin-top: 10px;
+        color: #6c757d;
+    }
+
+    .file-name {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #198754;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Upload de Arquivo CSV</h2>
+
+    <form id="formCapture" enctype="multipart/form-data">
+        <label for="csvFile" class="drop-zone" id="dropZone">
+            <div class="upload-icon">
+                <i class="bi bi-upload"></i>
+                <div class="fw-bold">LOGO DE UPLOAD</div>
+            </div>
+            <div class="upload-text">Arraste ou clique para selecionar seu arquivo .csv</div>
+                <input type="file" id="csvFile" name="arquivo" accept=".csv" required />
+            <div class="file-name" id="fileName"></div>
+        </label>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+    </form>
+</div>
+
+<script src="~/Scripts/Clientes/FI.CapClie.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('csvFile');
+    const fileNameDisplay = document.getElementById('fileName');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('dragover', e => {
+        e.preventDefault();
+        dropZone.classList.add('bg-light');
+    });
+
+    dropZone.addEventListener('dragleave', e => {
+        e.preventDefault();
+        dropZone.classList.remove('bg-light');
+    });
+
+    dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.classList.remove('bg-light');
+        fileInput.files = e.dataTransfer.files;
+        updateFileName();
+    });
+
+    fileInput.addEventListener('change', updateFileName);
+
+    function updateFileName() {
+        const file = fileInput.files[0];
+        fileNameDisplay.textContent = file ? `Arquivo selecionado: ${file.name}` : "";
+    }
+</script>
